@@ -20,13 +20,25 @@ class Post
     #[ORM\Column(type: Types::TEXT)]
     private ?string $postText = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(
+        type: Types::DATETIME_MUTABLE, 
+        nullable: true,
+        options:[
+            'default'=>'CURRENT_TIMESTAMP'
+        ]
+        )]
     private ?\DateTimeInterface $postDateCreated = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,
+     nullable: true
+    )]
     private ?\DateTimeInterface $postDatePublished = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(
+        options: [
+            'default'=>false,
+        ]
+        nullable: true)]
     private ?bool $postPublished = null;
 
     public function getId(): ?int
